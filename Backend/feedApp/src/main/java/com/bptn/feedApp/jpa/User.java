@@ -11,6 +11,16 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @Table(name="\"User\"")
@@ -45,6 +55,18 @@ public class User implements Serializable {
 
 	@Column(name="\"createdOn\"")
 	private Timestamp createdOn;
+
+	@JsonInclude(Include.NON_NULL)
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Profile profile;
+
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<Feed> feeds;
+
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<FeedMetaData> feedMetaData;
 	
 	public User() {
 	}
@@ -120,14 +142,36 @@ public class User implements Serializable {
 	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
 	}
+	
+	public Profile getProfile() {
+		return profile;
+	}
 
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+	public List<Feed> getFeeds() {
+		return feeds;
+	}
+
+	public void setFeeds(List<Feed> feeds) {
+		this.feeds = feeds;
+	}
+
+	public List<FeedMetaData> getFeedMetaData() {
+		return feedMetaData;
+	}
+
+	public void setFeedMetaData(List<FeedMetaData> feedMetaData) {
+		this.feedMetaData = feedMetaData;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
 				+ username + ", password=" + password + ", phone=" + phone + ", emailId=" + emailId + ", emailVerified="
 				+ emailVerified + ", createdOn=" + createdOn + "]";
 	}
-	
-	
 	
 }
