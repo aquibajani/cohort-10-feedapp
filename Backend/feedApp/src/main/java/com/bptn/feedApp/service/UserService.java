@@ -2,9 +2,7 @@ package com.bptn.feedApp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.bptn.feedApp.jdbc.UserDao;
 import com.bptn.feedApp.repository.UserRepository;
-import com.bptn.feedApp.jdbc.UserBean;
 import java.util.List;
 import com.bptn.feedApp.jpa.User;
 import java.util.Optional;
