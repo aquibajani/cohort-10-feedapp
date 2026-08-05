@@ -5,27 +5,27 @@ server:
 #Logger
 logging.level:
   web: DEBUG
-  '[com.bptn.feedapp]': DEBUG
+  "[com.bptn.feedapp]": DEBUG
 
 # Active Profile
 spring:
   profiles:
     active: default
 
-# Banner Text
+  # Banner Text
   banner:
     charset: UTF-8
     location: classpath:/banner/academy.txt
 
-# Jackson Settings
+  # Jackson Settings
   jackson:
     time-zone: America/Toronto
     date-format: "yyyy-MM-dd HH:mm:ss"
 
-# Email Settings
+  # Email Settings
   mail:
-    username: leocode237@gmail.com
-    password: pzbk pwjk qsvr gdzx
+    username:
+    password:
     host: smtp.gmail.com
     port: 587
     protocol: smtp
@@ -36,33 +36,32 @@ spring:
           starttls:
             enable: true
 
-# Common Database Settings
+  # Common Database Settings
   sql:
     init:
       continue-on-error: false
   jpa:
     show-sql: true
     open-in-view: false
-    properties:  
+    properties:
       jakarta:
         persistence:
           sharedCache:
             mode: ENABLE_SELECTIVE
         hibernate:
-          '[format_sql]': true        
+          "[format_sql]": true
       hibernate:
-          naming:
-            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 ---
-
 # Default Profile
 spring:
   config:
     activate:
-      on-profile: default 
+      on-profile: default
 
-# Database Settings
+  # Database Settings
   datasource:
     url: jdbc:postgresql://localhost:5432/feedApp
     username: postgres
@@ -74,7 +73,6 @@ spring:
       ddl-auto: validate
 
 ---
-  
 # Prod Profile
 server:
   port: 8080
@@ -84,7 +82,7 @@ spring:
     activate:
       on-profile: prod
 
-# Database Settings
+  # Database Settings
   datasource:
     url: jdbc:postgresql://localhost:5432/feedApp
     username: postgres
@@ -96,13 +94,12 @@ spring:
       ddl-auto: validate
 
 ---
-
 # Test Profile
 spring:
   config:
-    activate.on-profile: test  
+    activate.on-profile: test
 
-# Database Settings
+  # Database Settings
   sql.init:
     mode: always
     continue-on-error: false
@@ -121,4 +118,4 @@ spring:
       path: /h2-console
       settings:
         trace: false
-        web-allow-others: true 
+        web-allow-others: true
