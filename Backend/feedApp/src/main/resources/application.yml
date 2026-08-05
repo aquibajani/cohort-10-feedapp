@@ -24,8 +24,8 @@ spring:
 
 # Email Settings
   mail:
-    username: 
-    password: 
+    username: leocode237@gmail.com
+    password: pzbk pwjk qsvr gdzx
     host: smtp.gmail.com
     port: 587
     protocol: smtp
