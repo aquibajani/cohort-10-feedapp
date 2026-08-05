@@ -1,6 +1,6 @@
 package com.bptn.feedApp.exception;
 
-// ...existing imports...
+import org.springframework.boot.webmvc.error.ErrorController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RestControllerAdvice
-public class ExceptionHandling {
+public class ExceptionHandling implements ErrorController {
 	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
