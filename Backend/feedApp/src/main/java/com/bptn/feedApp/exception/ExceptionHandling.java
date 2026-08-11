@@ -19,27 +19,26 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.authentication.LockedException;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.bptn.feedApp.exception.domain.EmailExistException;
 import com.bptn.feedApp.exception.domain.UsernameExistException;
 import com.bptn.feedApp.exception.domain.LikeExistException;
 import com.bptn.feedApp.exception.domain.EmailNotFoundException;
-import com.bptn.feedApp.exception.domain.EmailNotVerifiedException;
-import com.bptn.feedApp.exception.domain.UserNotFoundException;
-import com.bptn.feedApp.exception.domain.FeedNotFoundException;
-import com.bptn.feedApp.exception.domain.FeedNotUserException;
+import org.springframework.web.bind.annotation.GetMapping;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import jakarta.persistence.NoResultException;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED;
 import java.util.Objects;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import jakarta.persistence.NoResultException;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.bptn.feedApp.exception.domain.FeedNotUserException;
+import com.bptn.feedApp.exception.domain.FeedNotFoundException;
+import com.bptn.feedApp.exception.domain.UserNotFoundException;
+import com.bptn.feedApp.exception.domain.EmailNotVerifiedException;
+
 
 @RestController
 @RestControllerAdvice
 public class ExceptionHandling implements ErrorController {
-	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private static final String TOKEN_DECODE_ERROR = "Token Decode Error";
@@ -78,7 +77,7 @@ public class ExceptionHandling implements ErrorController {
 	public ResponseEntity<HttpResponse> accessDeniedException() {
 	    return this.createHttpResponse(FORBIDDEN, NOT_ENOUGH_PERMISSION);
 	}
-
+	
 	@ExceptionHandler(AuthenticationException.class)
 	public ResponseEntity<HttpResponse> authenticationException() {
 	    return this.createHttpResponse(FORBIDDEN, NOT_AUTHENTICATED);
@@ -92,11 +91,6 @@ public class ExceptionHandling implements ErrorController {
 	@ExceptionHandler(TokenExpiredException.class)
 	public ResponseEntity<HttpResponse> tokenExpiredException(TokenExpiredException ex) {
 	    return this.createHttpResponse(UNAUTHORIZED, TOKEN_EXPIRED_ERROR);
-	}
-	
-	@ExceptionHandler(EmailExistException.class)
-	public ResponseEntity<HttpResponse> emailExistException(EmailExistException ex) {
-	    return this.createHttpResponse(BAD_REQUEST, ex.getMessage());
 	}
 	
 	@ExceptionHandler(UsernameExistException.class)
@@ -157,3 +151,4 @@ public class ExceptionHandling implements ErrorController {
 	    return this.createHttpResponse(NOT_FOUND, NO_MAPPING_EXIST_URL);
 	}
 }
+

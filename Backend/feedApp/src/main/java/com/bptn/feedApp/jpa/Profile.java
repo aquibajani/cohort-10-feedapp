@@ -3,6 +3,7 @@ package com.bptn.feedApp.jpa;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -105,3 +106,5 @@ public class Profile implements Serializable {
 	
 	
 }
+
+

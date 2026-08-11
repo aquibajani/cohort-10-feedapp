@@ -12,6 +12,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 @Component
 public class JwtService {
+	
 	final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
@@ -28,14 +29,17 @@ public class JwtService {
 	}
 	
 	public DecodedJWT verifyJwtToken(String token) {
+	      
 	      return JWT.require(HMAC512(this.provider.getJwtSecret()))
 	              .withIssuer(this.provider.getJwtIssuer())
 	              .build().verify(token);     
 	}
 	
 	public String getSubject(String token) {
+	        
 	        return JWT.require(HMAC512(this.provider.getJwtSecret()))
 	                 .withIssuer(this.provider.getJwtIssuer())
 	                 .build().verify(token).getSubject();
 	}
+	
 }

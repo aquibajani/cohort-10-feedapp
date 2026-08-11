@@ -3,7 +3,7 @@ package com.bptn.feedApp.jdbc;
 import java.sql.Timestamp;
 
 public class UserBean {
-	
+
 	private Integer userId;
 	private String firstName;
 	private String lastName;
@@ -13,6 +13,7 @@ public class UserBean {
 	private String emailId;
 	private Boolean emailVerified;
 	private Timestamp createdOn;
+	
 	public Integer getUserId() {
 		return userId;
 	}
@@ -69,11 +70,11 @@ public class UserBean {
 	}
 	@Override
 	public String toString() {
-		return "UserBean [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password="
-				+ password + ", phone=" + phone + ", emailId=" + emailId + ", emailVerified=" + emailVerified
-				+ ", createdOn=" + createdOn + "]";
+		return "UserBean [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
+				+ username + ", password=" + password + ", phone=" + phone + ", emailId=" + emailId + ", emailVerified="
+				+ emailVerified + ", createdOn=" + createdOn + "]";
 	}
 	
 	
-
+	
 }

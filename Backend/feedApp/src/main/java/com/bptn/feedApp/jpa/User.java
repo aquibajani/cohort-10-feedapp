@@ -2,6 +2,8 @@ package com.bptn.feedApp.jpa;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +13,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,7 +26,6 @@ import jakarta.persistence.OneToOne;
 @Entity
 @Table(name="\"User\"")
 public class User implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -55,7 +55,7 @@ public class User implements Serializable {
 
 	@Column(name="\"createdOn\"")
 	private Timestamp createdOn;
-
+	
 	@JsonInclude(Include.NON_NULL)
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Profile profile;
@@ -162,16 +162,19 @@ public class User implements Serializable {
 	public List<FeedMetaData> getFeedMetaData() {
 		return feedMetaData;
 	}
-
+	
 	public void setFeedMetaData(List<FeedMetaData> feedMetaData) {
 		this.feedMetaData = feedMetaData;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", username="
 				+ username + ", password=" + password + ", phone=" + phone + ", emailId=" + emailId + ", emailVerified="
 				+ emailVerified + ", createdOn=" + createdOn + "]";
 	}
+	
+	
+	
 	
 }

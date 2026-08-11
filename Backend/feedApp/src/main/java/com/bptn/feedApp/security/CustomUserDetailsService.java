@@ -11,10 +11,10 @@ import java.util.Optional;
 
 @Service("UserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
-
+	
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -26,6 +26,4 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	   return new CustomUserDetails(opt.get());
 	}
-    
-    
 }

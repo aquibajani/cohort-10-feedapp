@@ -1,11 +1,10 @@
 package com.bptn.feedApp.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.http.HttpStatus;
-import java.text.SimpleDateFormat;
 
 public class HttpResponse {
-
 	Date timeStamp;
 	int httpStatusCode; // 200, 201, 400, 500
 	HttpStatus httpStatus;
@@ -59,12 +58,11 @@ public class HttpResponse {
 	 public void setMessage(String message) {
 		 this.message = message;
 	 }
-
+	 
 	 @Override
 	 public String toString() {
-		return "HttpResponse [timeStamp=" + timeStamp + ", httpStatusCode=" + httpStatusCode + ", httpStatus="
-				+ httpStatus + ", reason=" + reason + ", message=" + message + "]";
+	      String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(this.timeStamp);
+	      return "HttpResponse [timeStamp=" + timeStamp + ", httpStatusCode=" + httpStatusCode + ", httpStatus="
+	              + httpStatus + ", reason=" + reason + ", message=" + message + "]";
 	 }
-	 
-	
 }

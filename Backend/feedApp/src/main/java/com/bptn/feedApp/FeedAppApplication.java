@@ -13,3 +13,12 @@ public class FeedAppApplication {
 	}
 
 }
+
+
+// API Endpoint (localhost:8080/user/register, localhost:8080/feed, localhost:8080/dashboard)
+// View - React will render JSON
+// Controller - UserController, FeedController, DashboardController
+// Service - UserService (CRUD Operation), FeedService, DashboardService
+// Model - User (DAO)
+// Repository / Factory
+// Comment
